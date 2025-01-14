@@ -4,7 +4,19 @@ import {
   Meta,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
+  Outlet,
+  Link,
+} from '@remix-run/react'
+import type { LinksFunction } from '@remix-run/node'
+import appStylesHref from './app.css?url'
+
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: appStylesHref },
+]
+
+export const future = {
+  v7_relativeSplatPath: true,
+}
 
 export default function App() {
   return (
@@ -36,18 +48,20 @@ export default function App() {
           <nav>
             <ul>
               <li>
-                <a href={`/contacts/1`}>Your Name</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href={`/contacts/2`}>Your Friend</a>
+                <Link to="/posts">Posts</Link>
               </li>
             </ul>
           </nav>
         </div>
-
+        <div id="detail">
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
-  );
+  )
 }
