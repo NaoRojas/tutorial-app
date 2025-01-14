@@ -1,4 +1,4 @@
-import { useLoaderData } from '@remix-run/react'
+import { Link, useLoaderData } from '@remix-run/react'
 import { getPosts, Post } from '~/post'
 
 export function loader() {
@@ -12,7 +12,9 @@ export default function Posts() {
       <h1>Posts</h1>
       <ul>
         {posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.postId}>
+            <Link to={`/posts/${post.postId}`}>{post.title}</Link>
+          </li>
         ))}
       </ul>
     </div>

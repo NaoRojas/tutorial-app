@@ -3,7 +3,7 @@ import fs from 'fs/promises'
 import fm from 'front-matter'
 
 export type Post = {
-  id: string
+  postId: string
   title: string
 }
 
@@ -15,7 +15,7 @@ export const getPosts = async () => {
     const file = await fs.readFile(path.join(postsPath, filename), 'utf-8')
     const { attributes } = fm(file.toString())
     return {
-      id: filename.replace(/\.md$/, ''),
+      postId: filename.replace(/\.md$/, ''),
       title: attributes.title
     }
   }))
